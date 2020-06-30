@@ -1,0 +1,66 @@
+body {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  #nodes {
+    height: 600px;
+    width: 600px;
+    position: relative;
+    padding: 0 0 0 0;
+    margin: 0 auto 10em;
+  }
+  
+  .list-item {
+    list-style: none;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    outline: 0;
+  }
+  
+  .list-item:not(:last-child) {
+    border-bottom: none;
+  }
+  
+  .cluster-container {
+    padding: 10em 0 10em 0;
+  }
+  
+  .card {
+    width: 12rem;
+  }
+  
+  .headerActive {
+    background-color: rgb(17, 194, 17);
+  }
+  .headerStopped {
+    background-color: rgb(255, 0, 0);
+  }
+  
+  .blank-row {
+    height: 50px;
+  }
+  
+  .btn-light {
+    border-color: rgb(201, 198, 198)
+  }
+  
+  .red {
+    color: rgb(255, 0, 0);
+  }
+  
+  .green {
+    color: rgb(17, 194, 17);
+  }
+  
+  particle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+    z-index: -1;
+  }
