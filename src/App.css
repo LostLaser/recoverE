@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
 
+:root {
+  --color-primary: rgb(66,133,244);
+  --color-secondary: rgb(244,160,0);
+  --color-inactive: rgb(219,68,55);
+  --color-active: rgb(15,157,88);
+  --light-border: rgb(201, 198, 198);
+}
+
 html, body {
   font-family: 'Roboto', sans-serif;
 }

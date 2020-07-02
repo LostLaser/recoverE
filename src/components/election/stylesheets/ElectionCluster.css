@@ -30,13 +30,14 @@ body {
 
 .card {
   width: 12rem;
+  box-shadow: 0px 0px 8px 1px rgba(0,0,0,0.21);
 }
 
 .headerActive {
-  background-color: rgb(17, 194, 17);
+  background-color: var(--color-active);
 }
 .headerStopped {
-  background-color: rgb(255, 0, 0);
+  background-color: var(--color-inactive);
 }
 
 .blank-row {
@@ -44,15 +45,15 @@ body {
 }
 
 .btn-light {
-  border-color: rgb(201, 198, 198)
+  border-color: var(--light-border)
 }
 
 .red {
-  color: rgb(255, 0, 0);
+  color: var(--color-inactive);
 }
 
 .green {
-  color: rgb(17, 194, 17);
+  color: var(--color-active);
 }
 
 particle {
