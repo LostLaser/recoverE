@@ -1,9 +1,9 @@
 <template>
   <div>
     <navigation-bar></navigation-bar>
-    <div class="container">
-      <election-component></election-component>
-    </div>
+    
+    <election-component></election-component>
+    
     <footer-bar></footer-bar>
   </div>
 </template>

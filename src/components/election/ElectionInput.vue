@@ -1,19 +1,15 @@
 <template>
     <div class="container">
         <div class="row">
-            <select class="form-control">
-                <option>Default select</option>
-            </select>
-        </div>
-        <div class="row">
-            <select class="form-control">
-                <option>Default select</option>
-            </select>
-        </div>
-        <div class="row">
-            <select class="form-control">
-                <option>Default select</option>
-            </select>
+            <div class="col-8">
+                <select class="form-control">
+                    <option>Bully Election</option>
+                    <option>Ring Election</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="number" value="6">
+            </div>
         </div>
     </div>
 </template>
