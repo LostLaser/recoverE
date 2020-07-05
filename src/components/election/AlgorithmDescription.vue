@@ -1,13 +1,51 @@
 <template>
-    <p class="description alert alert-light">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis diam at quam molestie egestas. Nullam varius malesuada ante, vel ultrices libero vestibulum et. Morbi eleifend eros et vulputate sagittis. Nullam laoreet, odio ut imperdiet facilisis, libero nisi luctus ipsum, in blandit nibh tortor vel eros. Maecenas feugiat tristique arcu, nec gravida velit feugiat dapibus. Curabitur iaculis massa at arcu ultricies, vel posuere ipsum fermentum. Phasellus facilisis magna ipsum, eget volutpat eros consequat vel. Pellentesque sed iaculis sapien, ac placerat mauris. Etiam et libero ullamcorper, rhoncus nisl et, pretium nisl. Quisque sit amet pharetra libero, nec maximus metus. Nulla hendrerit varius hendrerit. Phasellus bibendum finibus augue eu ornare. Mauris eget velit nec nisl maximus facilisis. Praesent vehicula tincidunt blandit. Ut ullamcorper nisl ut nibh tincidunt aliquam.
+    <div id="description">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Algorithm Description
+                        </button>
+                    </h5>
+                    </div>
 
-        Pellentesque lorem purus, volutpat a porttitor pulvinar, tempor at sapien. Nullam in tincidunt augue. Mauris tempor vulputate vestibulum. In egestas vehicula ornare. Donec venenatis ante ut diam ullamcorper, nec semper metus congue. Curabitur mollis pellentesque mi, ac imperdiet lectus. In mauris nunc, dignissim ut arcu sed, pretium rutrum lorem. Nunc malesuada tellus eu massa volutpat, in consectetur est porttitor. Ut mollis orci nisl, fringilla iaculis nunc euismod non. Nunc bibendum at orci quis varius. Fusce pulvinar augue non felis maximus, nec lobortis lacus dignissim. Praesent iaculis suscipit finibus. Etiam lorem augue, blandit vel condimentum sit amet, dictum at nisi.
-
-        Quisque vitae dui nulla. Fusce nulla dui, porttitor et rhoncus ut, cursus eget ipsum. Aenean nisi purus, pretium et luctus at, eleifend nec ex. Donec semper mi efficitur purus sagittis, in pretium est accumsan. Aliquam scelerisque euismod elit, et elementum dui elementum sit amet. Nulla massa mi, rutrum a malesuada a, euismod et metus. Vestibulum ut laoreet odio. Nulla dui massa, fringilla eget leo nec, sagittis tempor libero. Sed est mauris, faucibus et lorem et, blandit iaculis leo. Sed et magna in libero consequat mattis porttitor eget mauris. Quisque pellentesque vel eros ac convallis. Vestibulum mollis lorem quis lectus ultricies dignissim. Curabitur turpis justo, porttitor ut lorem eget, viverra aliquet dolor. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed condimentum accumsan ligula at bibendum.
-
-        Suspendisse porttitor posuere nisl, vel egestas augue tristique rutrum. Vivamus a nisl interdum, suscipit nulla non, euismod urna. Cras ultricies arcu sed dolor accumsan dapibus. Duis eget nunc vulputate, molestie orci eu, suscipit arcu. Aliquam nec consectetur augue. Pellentesque et augue felis. Proin faucibus est non justo pretium, sit amet tincidunt ante aliquam. Donec ut elit ut dolor condimentum eleifend. Maecenas lacinia suscipit tortor, id vestibulum felis placerat at. Quisque fringilla enim in sem mollis, vitae laoreet ligula lacinia. Curabitur odio magna, pellentesque vel dui non, commodo commodo purus. Phasellus maximus eget quam elementum condimentum. 
-    </p>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Runtime and Complexity
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Algorithm History
+                        </button>
+                    </h5>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                    </div>
+                </div>
+            </div>
+    </div>
 </template>
 
-<style src="./stylesheets/AlgorithmDescription.css"></style>
+<style scoped src="./stylesheets/AlgorithmDescription.css"></style>

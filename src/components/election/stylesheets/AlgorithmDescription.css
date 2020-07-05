@@ -1,4 +1,15 @@
-.description {
-    border-color: var(--color-secondary);
-    border-style: solid;
+.btn-link:hover, .btn-link {
+    color: white;
+}
+
+.card {
+    background-color: var(--color-primary);
+    width: 100%;
+}
+.card-body {
+    background-color: white;
+}
+
+.btn:focus {
+    box-shadow: none;
 }
