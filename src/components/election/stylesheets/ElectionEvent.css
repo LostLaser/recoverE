@@ -1,0 +1,18 @@
+.event {
+    border-radius: 50%;
+    width: var(--event-size);
+    height: var(--event-size); 
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+}
+
+.heartbeat {
+    background-color: var(--event-heartbeat);
+}
+
+.elect {
+    background-color: var(--event-elect);
+}

@@ -8,8 +8,13 @@
                 <election-input></election-input>
                 <election-cluster></election-cluster>
             </div>
-            <div class="col-lg-2">
-                <election-legend></election-legend>
+            <div class="col-lg-3">
+                <div class="card row pt-3 pb-3" id="section">
+                    <election-legend></election-legend>
+                </div>
+                <div class="card row mt-2 pt-3 pb-3" id="section">
+                    <election-legend></election-legend>
+                </div>
             </div>
         </div>
     </div>

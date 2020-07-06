@@ -2,7 +2,7 @@
     <div id="cluster-container" class="container">
         <ul id="nodes" class="buttons are-large" >
             <li v-for="node in nodeList" class="list-item" v-bind:key="node.id">
-                <div class="card" v-bind:id="node.id" v-bind:style="node.style">
+                <div class="card card-up" v-bind:id="node.id" v-bind:style="node.style">
                     <div class="card-header" v-bind:class="[ node.isUp ? 'headerActive' : 'headerStopped' ]"></div>
                     <div class="card-body container">
                         <div class="row">

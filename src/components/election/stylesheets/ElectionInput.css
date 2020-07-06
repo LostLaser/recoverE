@@ -5,3 +5,7 @@
 .form-control {
     background-color: var(--input-background);
 }
+
+.btn-dark {
+    background-color: var(--color-secondary);
+}

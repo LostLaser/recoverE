@@ -81,12 +81,12 @@ export default {
                 ], {
                 duration: 1500
                 }
-        );
-    
-        // remove the element from the DOM
-        animation.onfinish = () => {
-            particle.remove();
-        };
+            );
+        
+            // remove the element from the DOM
+            animation.onfinish = () => {
+                particle.remove();
+            };
         }
     },
     mounted() {

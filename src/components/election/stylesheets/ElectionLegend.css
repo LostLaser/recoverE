@@ -2,3 +2,19 @@
     background-color: var(--color-primary);
     border-color: var(--color-primary);
 }
+
+.list-group {
+    min-width: 100%;
+}
+
+.list-group-item {
+    border-right: none;
+    border-left: none;
+    font-weight: 300;
+    font-size: smaller;
+}
+
+.event-description {
+    text-decoration: underline;
+    text-decoration-color: var(--light-border);
+}

@@ -1,13 +1,31 @@
 <template>
     <div class="container">
+        Event Legend
         <div class="list-group">
-            <div class="list-group-item list-group-item active">
-                Legend
+            <div class="list-group-item list-group-item">
+                <div class="row">
+                    <election-event eventClass="heartbeat"></election-event>
+                    <div class="offset-sm-1">Dapibus ac facilisis in</div>
+                </div>
             </div>
-            <div class="list-group-item list-group-item">Dapibus ac facilisis in</div>
-            <div class="list-group-item list-group-item">Morbi leo risus</div>
-            <div class="list-group-item list-group-item">Porta ac consectetur ac</div>
-            <div class="list-group-item list-group-item" disabled>Vestibulum at eros</div>
+            <div class="list-group-item list-group-item">
+                <div class="row">
+                    <election-event eventClass="elect"></election-event>
+                    <div class="offset-sm-1">Morbi leo risus</div>
+                </div>
+            </div>
+            <div class="list-group-item list-group-item">
+                <div class="row">
+                    <election-event eventClass=""></election-event>
+                    <div class="offset-sm-1">Porta ac consectetur ac</div>
+                </div>
+            </div>
+            <div class="list-group-item list-group-item">
+                <div class="row">
+                    <election-event eventClass=""></election-event>
+                    <div class="offset-sm-1">Vestibulum at eros</div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

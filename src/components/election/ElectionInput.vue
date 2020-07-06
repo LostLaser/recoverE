@@ -11,10 +11,10 @@
                 <input class="form-control" type="number" value="6">
             </div>
             <div clas="col-2">
-                <button class="btn btn-light">Submit</button>
+                <button class="btn btn-dark">Submit</button>
             </div>
         </div>
     </div>
 </template>
 
-<style src="./stylesheets/ElectionInput.css"></style>
+<style scoped src="./stylesheets/ElectionInput.css"></style>
