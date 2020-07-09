@@ -4,11 +4,10 @@ import App from './App.vue'
 Vue.config.productionTip = false;//if no js file name occurs then it will look for index.js.
 import 'bootstrap'; 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'material-icons/iconfont/material-icons.css';
-import './App.css'
+import './App.css';
 require('./components/election');
 require('./components/base');
-require('./store')
+require('./store');
 
 new Vue({
   render: h => h(App),

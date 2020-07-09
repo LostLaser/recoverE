@@ -22,13 +22,14 @@ export default {
             node.isUp = !node.isUp
         },
         addNode: function (id) {
-            var label = id.split("-")[0]
+            var label = this.trimId(id);
             this.nodeList.push(
                 {
                 id: "val-" + id, 
                 label: label,
                 serverId: id,
-                isUp: true
+                isUp: true,
+                isMaster: false
             });
             this.updateLayout(this.nodeList);
         },
@@ -52,8 +53,9 @@ export default {
                 case "ELECT":
                     this.displayEvent(jsonVal["from"], jsonVal["to"], "yellow")
                     break
-                case "ACK":
-                    this.displayEvent(jsonVal["from"], jsonVal["to"], "green")
+                case "ELECTED":
+                    this.setMaster(jsonVal["from"])
+                    break
             }
             this.commitEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"])
         },
@@ -101,8 +103,19 @@ export default {
 
             store.commit('addEvent', {event: {"from": from, "to": to, "action": action}});
         },
+        setMaster(id) {
+            id = "val-"+id;
+            for (var node of this.nodeList) {
+                console.log("node")
+                console.log(id, node.label)
+                if (node.id == id) {
+                    console.log("HERE ALSO")
+                    node.isMaster = true;
+                }
+            }
+        },
         trimId(id) {
-            if (id != "") {
+            if (id != "" && id != undefined) {
                 id = id.split('-')[0]
             }
             return id;
@@ -111,7 +124,6 @@ export default {
     mounted() {
             var count = 5
             var vue = this
-            console.log("PROC")
             this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
             this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))

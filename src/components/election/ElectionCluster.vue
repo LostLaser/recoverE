@@ -7,6 +7,9 @@
                     <div class="card-body container">
                         <div class="row">
                             <div class="col-md-8">{{ node.label }}</div>
+                            <div class="col-md-2" v-if="node.isMaster">
+                                <span class="material-icons align-middle">{{ 'military_tech' }}</span>
+                            </div>
                         </div>
                         <div class="blank-row"></div>
                         <div class="row">

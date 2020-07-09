@@ -9,7 +9,7 @@
   --light-border: rgb(201, 198, 198);
   --input-background: rgb(241, 243, 250);
   --event-heartbeat: red;
-  --event-elect: yellow;
+  --event-elect: rgb(244 180 0);
 
   --event-size: 20px;
   --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.1);
