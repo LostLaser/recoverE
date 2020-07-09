@@ -10,8 +10,8 @@
 .list-group-item {
     border-right: none;
     border-left: none;
-    font-weight: 300;
-    font-size: smaller;
+    font-weight: var(--small-font-weight);
+    font-size: var(--small-font-size);
 }
 
 .event-description {

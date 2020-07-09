@@ -4,25 +4,25 @@
         <div class="list-group">
             <div class="list-group-item list-group-item">
                 <div class="row">
-                    <election-event eventClass="heartbeat"></election-event>
+                    <election-event event-class="heartbeat"></election-event>
                     <div class="offset-sm-1">Dapibus ac facilisis in</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
                 <div class="row">
-                    <election-event eventClass="elect"></election-event>
+                    <election-event event-class="elect"></election-event>
                     <div class="offset-sm-1">Morbi leo risus</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
                 <div class="row">
-                    <election-event eventClass=""></election-event>
+                    <election-event event-class=""></election-event>
                     <div class="offset-sm-1">Porta ac consectetur ac</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
                 <div class="row">
-                    <election-event eventClass=""></election-event>
+                    <election-event event-class=""></election-event>
                     <div class="offset-sm-1">Vestibulum at eros</div>
                 </div>
             </div>

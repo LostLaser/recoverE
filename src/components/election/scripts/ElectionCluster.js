@@ -1,3 +1,5 @@
+import store from "../../../store"
+
 export default {
     data() {
         return {
@@ -40,21 +42,26 @@ export default {
         messageParser: function(jsonVal) {
             switch(jsonVal["action"]) {
                 case "SETUP":
-                for (var i = 0; i < jsonVal["payload"].length; i++) {
-                    this.addNode(jsonVal["payload"][i])
-                }
-                break
+                    for (var i = 0; i < jsonVal["payload"].length; i++) {
+                        this.addNode(jsonVal["payload"][i])
+                    }
+                    break
                 case "HEARTBEAT":
-                this.displayEvent(jsonVal["from"], jsonVal["to"], "red")
-                break
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], "red")
+                    break
                 case "ELECT":
-                this.displayEvent(jsonVal["from"], jsonVal["to"], "yellow")
-                break
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], "yellow")
+                    break
                 case "ACK":
-                this.displayEvent(jsonVal["from"], jsonVal["to"], "green")
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], "green")
             }
+            this.commitEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"])
         },
         displayEvent: function(from, to, color) {
+            if (to == "") {
+                return;
+            }
+
             const bbox = document.querySelector("#val-"+from).getBoundingClientRect();
             const fromX = bbox.left + bbox.width / 2;
             const fromY = bbox.top + bbox.height / 2;
@@ -87,15 +94,27 @@ export default {
             animation.onfinish = () => {
                 particle.remove();
             };
+        },
+        commitEvent(from, to, action) {
+            from = this.trimId(from);
+            to = this.trimId(to);
+
+            store.commit('addEvent', {event: {"from": from, "to": to, "action": action}});
+        },
+        trimId(id) {
+            if (id != "") {
+                id = id.split('-')[0]
+            }
+            return id;
         }
     },
     mounted() {
-        var count = 5
-        var vue = this
-        console.log("PROC")
-        this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
-        this.connection.onmessage = function (msg) {
-        vue.messageParser(JSON.parse(msg.data))
+            var count = 5
+            var vue = this
+            console.log("PROC")
+            this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
+            this.connection.onmessage = function (msg) {
+            vue.messageParser(JSON.parse(msg.data))
         }
         
     }

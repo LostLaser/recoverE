@@ -6,3 +6,4 @@ Vue.component('algorithm-description', require('./AlgorithmDescription').default
 Vue.component('election-component', require('./ElectionComponent').default);
 Vue.component('election-legend', require('./ElectionLegend').default);
 Vue.component('election-event', require('./ElectionEvent').default);
+Vue.component('election-event-log', require('./ElectionEventLog').default);

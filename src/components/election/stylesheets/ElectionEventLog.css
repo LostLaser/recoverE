@@ -1,0 +1,13 @@
+tbody {
+    font-weight: var(--small-font-weight);
+    font-size: var(--small-font-size);
+}
+
+.table table {
+    margin-bottom: none;
+}
+
+.table thead th {
+    border-bottom: none;
+    border-top: none;
+}

@@ -13,7 +13,7 @@
                     <election-legend></election-legend>
                 </div>
                 <div class="card row mt-2 pt-3 pb-3" id="section">
-                    <election-legend></election-legend>
+                    <election-event-log></election-event-log>
                 </div>
             </div>
         </div>

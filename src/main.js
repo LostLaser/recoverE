@@ -8,6 +8,7 @@ import 'material-icons/iconfont/material-icons.css';
 import './App.css'
 require('./components/election');
 require('./components/base');
+require('./store')
 
 new Vue({
   render: h => h(App),

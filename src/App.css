@@ -12,7 +12,9 @@
   --event-elect: yellow;
 
   --event-size: 20px;
-  --box-shadow-default: 0px 0px 8px 1px rgba(0,0,0,0.21);
+  --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.1);
+  --small-font-weight: 300;
+  --small-font-size: smaller;
 }
 
 html, body {

@@ -1,6 +1,6 @@
 export default {
     props: {
-        eventClass: {
+        "event-class": {
             type: String,
             default: "red"
         }
