@@ -1,10 +1,12 @@
-import store from "../../../store"
+import Velocity from 'velocity-animate';
 
 export default {
     data() {
         return {
             nodeList: [],
-            connection: 0
+            connection: 0,
+            events: [],
+            eventId: 0
         }
     },
     methods: {
@@ -13,7 +15,7 @@ export default {
             if (node.isUp) {
                 msgAction = "STOP"
             } 
-            console.log(msgAction)
+            
             var msg = {
                 action: msgAction,
                 id: node.serverId
@@ -48,68 +50,50 @@ export default {
                     }
                     break
                 case "HEARTBEAT":
-                    this.displayEvent(jsonVal["from"], jsonVal["to"], "red")
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
                     break
                 case "ELECT":
-                    this.displayEvent(jsonVal["from"], jsonVal["to"], "yellow")
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
                     break
                 case "ELECTED":
                     this.setMaster(jsonVal["from"])
                     break
             }
-            this.commitEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"])
         },
-        displayEvent: function(from, to, color) {
-            if (to == "") {
+        displayEvent: function(from, to, action) {
+            if (to == "" || from == "") {
                 return;
             }
-
             const bbox = document.querySelector("#val-"+from).getBoundingClientRect();
             const fromX = bbox.left + bbox.width / 2;
             const fromY = bbox.top + bbox.height / 2;
             const bbox2 = document.querySelector('#val-'+to).getBoundingClientRect();
             const toX = bbox2.left + bbox2.width / 2;
             const toY = bbox2.top + bbox2.height / 2;
+            
+            var event = {"type": "heartbeat", "id": this.eventId, "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
+            this.events.push(event);
+            this.eventId++;
 
-            const particle = document.createElement('particle');
-            document.body.appendChild(particle);
-        
-            const size = 20;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.background = `${color}`;
-        
-            const animation = particle.animate([
-                {
-                // offset the particle with half its size to center it
-                transform: `translate(-50%, -50%) translate(${fromX}px, ${fromY}px)`
-                },
-                {
-                transform: `translate(${toX}px, ${toY}px)`
-                }
-                ], {
-                duration: 1500
-                }
-            );
-        
-            // remove the element from the DOM
-            animation.onfinish = () => {
-                particle.remove();
-            };
+            // hack so the event enter transitions will occur
+            setTimeout(() => {event.show = true;}, 1);
+
+            setTimeout(() => {
+                var index = this.events.indexOf(event);
+                this.events.splice(index, 1);
+            }, 1500)
         },
-        commitEvent(from, to, action) {
-            from = this.trimId(from);
-            to = this.trimId(to);
-
-            store.commit('addEvent', {event: {"from": from, "to": to, "action": action}});
+        eventPosition: function(el) {
+            Velocity(el, { translateX: `${this.element.from.x}px`, translateY: `${this.element.from.y}px` }, {duration: 0})
+        },
+        eventEnter: function (el, done) {
+            Velocity(el, { translateX: `${this.element.to.x}px`, translateY: `${this.element.to.y}px` }, { duration: 1500 })
+            Velocity(el, { complete: done })
         },
         setMaster(id) {
             id = "val-"+id;
             for (var node of this.nodeList) {
-                console.log("node")
-                console.log(id, node.label)
                 if (node.id == id) {
-                    console.log("HERE ALSO")
                     node.isMaster = true;
                 }
             }
@@ -120,11 +104,12 @@ export default {
             }
             return id;
         }
+        
     },
     mounted() {
-            var count = 5
+            var count = 3
             var vue = this
-            this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
+            this.connection = new WebSocket("ws://localhost:8888/election?count=6" + count)
             this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }

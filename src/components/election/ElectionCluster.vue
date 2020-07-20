@@ -20,6 +20,9 @@
                     </div>
                 </div>
             </li>
+            <transition v-for="event in events" v-bind:key="event.eventId" @enter="eventEnter" @before-enter="eventPosition" v-bind="element=event" :css="false">
+                <election-event class="eventParticle" :event-class="event.action" v-if="event.show"></election-event>
+            </transition>
         </ul>
     </div>
 </template>

@@ -5,13 +5,13 @@
             <div class="list-group-item list-group-item">
                 <div class="row">
                     <election-event event-class="heartbeat"></election-event>
-                    <div class="offset-sm-1">Dapibus ac facilisis in</div>
+                    <div class="offset-sm-1">Heartbeat</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
                 <div class="row">
                     <election-event event-class="elect"></election-event>
-                    <div class="offset-sm-1">Morbi leo risus</div>
+                    <div class="offset-sm-1">Elect node</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
