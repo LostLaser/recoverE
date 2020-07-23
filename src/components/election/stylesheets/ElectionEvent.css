@@ -17,3 +17,6 @@
     background-color: var(--event-elect);
 }
 
+.start_new_election {
+    background-color: var(--event-start-election);
+}

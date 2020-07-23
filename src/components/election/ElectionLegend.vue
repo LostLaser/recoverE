@@ -11,7 +11,7 @@
             <div class="list-group-item list-group-item">
                 <div class="row">
                     <election-event event-class="elect"></election-event>
-                    <div class="offset-sm-1">Elect node</div>
+                    <div class="offset-sm-1">Election notice</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">

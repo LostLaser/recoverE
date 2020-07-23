@@ -6,7 +6,8 @@ export default {
             nodeList: [],
             connection: 0,
             events: [],
-            eventId: 0
+            eventId: 0,
+            eventTimeOut: 1500
         }
     },
     methods: {
@@ -21,7 +22,6 @@ export default {
                 id: node.serverId
             }
             this.connection.send(JSON.stringify(msg))
-            node.isUp = !node.isUp
         },
         addNode: function (id) {
             var label = this.trimId(id);
@@ -43,6 +43,7 @@ export default {
             }
         },
         messageParser: function(jsonVal) {
+            //console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"], )
             switch(jsonVal["action"]) {
                 case "SETUP":
                     for (var i = 0; i < jsonVal["payload"].length; i++) {
@@ -54,9 +55,28 @@ export default {
                     break
                 case "ELECT":
                     this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     break
                 case "ELECTED":
-                    this.setMaster(jsonVal["from"])
+                    this.getNodeById("val-" + jsonVal["from"]).isMaster = true;
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
+                    break
+                case "NOT_MASTER":
+                    this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
+                    break
+                case "STOPPED":
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
+                    this.getNodeById("val-" + jsonVal["from"]).isUp = false;
+                    this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
+                    break
+                case "STARTED":
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
+                    this.getNodeById("val-" + jsonVal["from"]).isUp = true;
+                    break
+                case "START_NEW_ELECTION":
+                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
+                    this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
                     break
             }
         },
@@ -81,20 +101,23 @@ export default {
             setTimeout(() => {
                 var index = this.events.indexOf(event);
                 this.events.splice(index, 1);
-            }, 1500)
+            }, this.eventTimeOut + 500)
         },
         eventPosition: function(el) {
             Velocity(el, { translateX: `${this.element.from.x}px`, translateY: `${this.element.from.y}px` }, {duration: 0})
         },
         eventEnter: function (el, done) {
-            Velocity(el, { translateX: `${this.element.to.x}px`, translateY: `${this.element.to.y}px` }, { duration: 1500 })
+            Velocity(el, { translateX: `${this.element.to.x}px`, translateY: `${this.element.to.y}px` }, { duration: this.eventTimeOut, easing: "easeInQuad" })
             Velocity(el, { complete: done })
         },
-        setMaster(id) {
-            id = "val-"+id;
+        toggleMaster(id) {
+            var node = this.getNodeById(id)
+            node.isMaster = !node.isMaster;
+        },
+        getNodeById(id) {
             for (var node of this.nodeList) {
                 if (node.id == id) {
-                    node.isMaster = true;
+                    return node
                 }
             }
         },
@@ -104,12 +127,12 @@ export default {
             }
             return id;
         }
-        
+
     },
     mounted() {
-            var count = 3
+            var count = 6
             var vue = this
-            this.connection = new WebSocket("ws://localhost:8888/election?count=6" + count)
+            this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
             this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
