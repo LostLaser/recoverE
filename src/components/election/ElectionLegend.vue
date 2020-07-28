@@ -11,13 +11,13 @@
             <div class="list-group-item list-group-item">
                 <div class="row">
                     <election-event event-class="elect"></election-event>
-                    <div class="offset-sm-1">Election notice</div>
+                    <div class="offset-sm-1">Election result notice</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">
                 <div class="row">
-                    <election-event event-class=""></election-event>
-                    <div class="offset-sm-1">Porta ac consectetur ac</div>
+                    <election-event event-class="start_new_election"></election-event>
+                    <div class="offset-sm-1">Request to start election</div>
                 </div>
             </div>
             <div class="list-group-item list-group-item">

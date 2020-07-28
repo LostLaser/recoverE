@@ -55,27 +55,21 @@ export default {
                     break
                 case "ELECT":
                     this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     break
                 case "ELECTED":
                     this.getNodeById("val-" + jsonVal["from"]).isMaster = true;
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     break
                 case "NOT_MASTER":
                     this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     break
                 case "STOPPED":
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     this.getNodeById("val-" + jsonVal["from"]).isUp = false;
                     this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
                     break
                 case "STARTED":
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     this.getNodeById("val-" + jsonVal["from"]).isUp = true;
                     break
                 case "START_NEW_ELECTION":
-                    console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"] )
                     this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
                     break
             }
@@ -132,7 +126,7 @@ export default {
     mounted() {
             var count = 6
             var vue = this
-            this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
+            this.connection = new WebSocket("ws://stormy-gorge-22823.herokuapp.com/election?count=" + count)
             this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
