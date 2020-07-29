@@ -46,6 +46,7 @@ export default {
             //console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"], )
             switch(jsonVal["action"]) {
                 case "SETUP":
+                    console.log(jsonVal["payload"])
                     for (var i = 0; i < jsonVal["payload"].length; i++) {
                         this.addNode(jsonVal["payload"][i])
                     }
@@ -124,12 +125,13 @@ export default {
 
     },
     mounted() {
-            var count = 6
-            var vue = this
-            this.connection = new WebSocket("ws://stormy-gorge-22823.herokuapp.com/election?count=" + count)
-            this.connection.onmessage = function (msg) {
+        var count = 6
+        var vue = this
+        this.connection = new WebSocket("ws://stormy-gorge-22823.herokuapp.com/election?count=" + count)
+        this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
+        console.log(this.connection)
         
     }
 }
