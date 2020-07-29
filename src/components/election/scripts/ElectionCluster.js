@@ -46,7 +46,6 @@ export default {
             //console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"], )
             switch(jsonVal["action"]) {
                 case "SETUP":
-                    console.log(jsonVal["payload"])
                     for (var i = 0; i < jsonVal["payload"].length; i++) {
                         this.addNode(jsonVal["payload"][i])
                     }
@@ -131,7 +130,6 @@ export default {
         this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
-        console.log(this.connection)
         
     }
 }

@@ -1,7 +1,6 @@
 <template>
     <div id="cluster-container" class="container">
         <ul id="nodes" class="buttons are-large" >
-            HEY THERE
             <li v-for="node in nodeList" class="list-item" v-bind:key="node.id">
                 <div class="card card-up" v-bind:id="node.id" v-bind:style="node.style">
                     <div class="card-header" v-bind:class="[ node.isUp ? 'headerActive' : 'headerStopped' ]"></div>
