@@ -137,8 +137,9 @@ export default {
     mounted() {
         var vue = this
         var count = vue.count
-        //"wss://stormy-gorge-22823.herokuapp.com/election?count="
-        this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
+
+        console.log(this.$apiUrl + "/election?count=" + count)
+        this.connection = new WebSocket(this.$apiUrl + "/election?count=" + count)
         this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
