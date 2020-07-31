@@ -17,4 +17,4 @@
     </div>
 </template>
 
-<style src="./stylesheets/ElectionComponent.css"></style>
+<style scoped src="./stylesheets/ElectionComponent.css"></style>

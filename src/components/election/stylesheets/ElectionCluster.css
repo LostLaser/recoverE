@@ -28,6 +28,14 @@ body {
   padding: 10em 0 10em 0;
 }
 
+#loading-container {
+  min-height: 80vh;
+}
+
+.spinner-grow {
+  color: var(--color-secondary);
+}
+
 .card {
   width: 12rem;
   box-shadow: var(--box-shadow-default);

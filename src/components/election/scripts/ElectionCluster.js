@@ -1,13 +1,24 @@
 import Velocity from 'velocity-animate';
 
 export default {
+    props: {
+        count: {
+            type: Number,
+            default: 5
+        },
+        election_type: {
+            type: String,
+            default: "bully"
+        }
+    },
     data() {
         return {
             nodeList: [],
             connection: 0,
             events: [],
             eventId: 0,
-            eventTimeOut: 1500
+            eventTimeOut: 1500,
+            loading: true
         }
     },
     methods: {
@@ -46,6 +57,7 @@ export default {
             //console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"], )
             switch(jsonVal["action"]) {
                 case "SETUP":
+                    this.loading = false
                     for (var i = 0; i < jsonVal["payload"].length; i++) {
                         this.addNode(jsonVal["payload"][i])
                     }
@@ -75,7 +87,7 @@ export default {
             }
         },
         displayEvent: function(from, to, action) {
-            if (to == "" || from == "") {
+            if (to == "" || to == null || from == "" || from == null) {
                 return;
             }
             const bbox = document.querySelector("#val-"+from).getBoundingClientRect();
@@ -93,14 +105,13 @@ export default {
             setTimeout(() => {event.show = true;}, 1);
 
             setTimeout(() => {
-                var index = this.events.indexOf(event);
-                this.events.splice(index, 1);
-            }, this.eventTimeOut + 500)
+                this.events.shift();
+            }, this.eventTimeOut)
         },
         eventPosition: function(el) {
             Velocity(el, { translateX: `${this.element.from.x}px`, translateY: `${this.element.from.y}px` }, {duration: 0})
         },
-        eventEnter: function (el, done) {
+        eventEnter: function(el, done) {
             Velocity(el, { translateX: `${this.element.to.x}px`, translateY: `${this.element.to.y}px` }, { duration: this.eventTimeOut, easing: "easeInQuad" })
             Velocity(el, { complete: done })
         },
@@ -108,7 +119,7 @@ export default {
             var node = this.getNodeById(id)
             node.isMaster = !node.isMaster;
         },
-        getNodeById(id) {
+                getNodeById(id) {
             for (var node of this.nodeList) {
                 if (node.id == id) {
                     return node
@@ -124,9 +135,10 @@ export default {
 
     },
     mounted() {
-        var count = 6
         var vue = this
-        this.connection = new WebSocket("wss://stormy-gorge-22823.herokuapp.com/election?count=" + count)
+        var count = vue.count
+        //"wss://stormy-gorge-22823.herokuapp.com/election?count="
+        this.connection = new WebSocket("ws://localhost:8888/election?count=" + count)
         this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }
