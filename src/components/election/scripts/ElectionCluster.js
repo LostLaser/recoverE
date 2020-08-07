@@ -2,13 +2,11 @@ import Velocity from 'velocity-animate';
 
 export default {
     props: {
-        count: {
-            type: Number,
-            default: 5
+        node_count: {
+            type: String
         },
         election_type: {
-            type: String,
-            default: "bully"
+            type: String
         }
     },
     data() {
@@ -136,10 +134,8 @@ export default {
     },
     mounted() {
         var vue = this
-        var count = vue.count
 
-        console.log(this.$apiUrl + "/election?count=" + count)
-        this.connection = new WebSocket(this.$apiUrl + "/election?count=" + count)
+        this.connection = new WebSocket(this.$apiUrl + "/election?count=" + this.node_count)
         this.connection.onmessage = function (msg) {
             vue.messageParser(JSON.parse(msg.data))
         }

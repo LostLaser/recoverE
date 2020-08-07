@@ -20,12 +20,6 @@
                     <div class="offset-sm-1">Request to start election</div>
                 </div>
             </div>
-            <div class="list-group-item list-group-item">
-                <div class="row">
-                    <election-event event-class=""></election-event>
-                    <div class="offset-sm-1">Vestibulum at eros</div>
-                </div>
-            </div>
         </div>
     </div>
 </template>

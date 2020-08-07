@@ -9,3 +9,7 @@
 .btn-dark {
     background-color: var(--color-secondary);
 }
+
+.btn-dark.focus, .btn-dark:focus {
+    box-shadow: none;
+}
