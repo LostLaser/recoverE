@@ -88,12 +88,14 @@ export default {
             if (to == "" || to == null || from == "" || from == null) {
                 return;
             }
+            
+            const outerBox = document.querySelector("#nodes").getBoundingClientRect();
             const bbox = document.querySelector("#val-"+from).getBoundingClientRect();
-            const fromX = bbox.left + bbox.width / 2;
-            const fromY = bbox.top + bbox.height / 2;
+            const fromX = (bbox.left + bbox.width / 2) - outerBox.left;
+            const fromY = (bbox.top + bbox.height / 2) - outerBox.top;
             const bbox2 = document.querySelector('#val-'+to).getBoundingClientRect();
-            const toX = bbox2.left + bbox2.width / 2;
-            const toY = bbox2.top + bbox2.height / 2;
+            const toX = (bbox2.left + bbox2.width / 2) - outerBox.left;
+            const toY = (bbox2.top + bbox2.height / 2) - outerBox.top;
             
             var event = {"type": "heartbeat", "id": this.eventId, "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
             this.events.push(event);

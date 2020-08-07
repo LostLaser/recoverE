@@ -1,5 +1,5 @@
 <template>
-    <div id="description">
+    <div id="description" class="mb-3">
         <div id="accordion">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -8,9 +8,9 @@
                             Algorithm Description
                         </button>
                     </h5>
-                    </div>
+                </div>
 
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         {{algorithmProperties.description}}
                     </div>
@@ -23,8 +23,8 @@
                             Runtime and Complexity
                         </button>
                     </h5>
-                    </div>
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                     <div class="card-body">
                         {{algorithmProperties.runtime}}
                     </div>
@@ -37,14 +37,14 @@
                             Algorithm History
                         </button>
                     </h5>
-                    </div>
-                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
                         {{algorithmProperties.history}}
                     </div>
-                    </div>
                 </div>
             </div>
+        </div>
     </div>
 </template>
 
