@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="page">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <navigation-bar></navigation-bar>

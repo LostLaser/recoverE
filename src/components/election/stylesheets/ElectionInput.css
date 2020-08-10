@@ -6,10 +6,17 @@
     background-color: var(--input-background);
 }
 
-.btn-dark {
+.btn {
     background-color: var(--color-secondary);
 }
 
-.btn-dark.focus, .btn-dark:focus {
+.btn.focus, .btn:focus {
     box-shadow: none;
+}
+
+@supports (-moz-appearance:none) {
+    select
+    {
+        -moz-appearance:none !important;
+    }
 }

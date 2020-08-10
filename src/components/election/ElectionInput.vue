@@ -7,10 +7,12 @@
                 </select>
             </div>
             <div class="col-4">
-                <input class="form-control" type="number" v-model="node_count">
+                <select class="form-control" v-model="node_count">
+                    <option v-for="value in node_count_options" v-bind:key="value"> {{ value }} </option>
+                </select>
             </div>
             <div clas="col-2">
-                <button @click="updateCluster" class="btn btn-dark">Submit</button>
+                <button @click="updateCluster" class="btn btn-primary">Submit</button>
             </div>
         </div>
     </div>
