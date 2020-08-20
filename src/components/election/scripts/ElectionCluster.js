@@ -135,12 +135,18 @@ export default {
 
     },
     mounted() {
-        var vue = this
+        var ref = this
 
         this.connection = new WebSocket(this.$apiUrl + "/election?count=" + this.node_count)
         this.connection.onmessage = function (msg) {
-            vue.messageParser(JSON.parse(msg.data))
+            ref.messageParser(JSON.parse(msg.data))
+        }
+        this.connection.onerror = function () {
+            alert("Conneciton lost!")
         }
         
+    },
+    beforeDestroy() {
+        this.connection.close();
     }
 }
