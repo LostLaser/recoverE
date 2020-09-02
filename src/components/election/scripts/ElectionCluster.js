@@ -137,12 +137,12 @@ export default {
     mounted() {
         var ref = this
 
-        this.connection = new WebSocket(this.$apiUrl + "/election?count=" + this.node_count)
+        this.connection = new WebSocket(`${this.$apiUrl}/election?count=${this.node_count}&election_type=${this.election_type}`)
         this.connection.onmessage = function (msg) {
             ref.messageParser(JSON.parse(msg.data))
         }
         this.connection.onerror = function () {
-            alert("Conneciton lost!")
+            console.log("Connection lost!")
         }
         
     },

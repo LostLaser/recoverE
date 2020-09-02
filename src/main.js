@@ -10,7 +10,7 @@ require('./components/base');
 require('./store');
 
 // ######### Default Configuration ##########
-Vue.prototype.$apiUrl = "ws://localhost:8888"
+Vue.prototype.$apiUrl = "ws://localhost:5000"
 
 // Set production properties 
 if (process.env.NODE_ENV == "production") {
