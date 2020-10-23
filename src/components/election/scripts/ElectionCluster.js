@@ -97,7 +97,7 @@ export default {
             const toX = (bbox2.left + bbox2.width / 2) - outerBox.left;
             const toY = (bbox2.top + bbox2.height / 2) - outerBox.top;
             
-            var event = {"type": "heartbeat", "id": this.eventId, "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
+            var event = {"id": this.eventId, "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
             this.events.push(event);
             this.eventId++;
 
