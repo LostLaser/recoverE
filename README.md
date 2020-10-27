@@ -1,4 +1,9 @@
-# recovere-js
+# recoverE
+
+## Overview
+recoverE is a project that visualizes various leader election algorithms in distributed systems. This project's primary use is for educational purposes.
+
+Running instance located here: https://recover-e.herokuapp.com
 
 ## Project setup
 ```
