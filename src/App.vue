@@ -9,3 +9,12 @@
     <footer-bar></footer-bar>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'app',
+    created () {
+      document.title = "Visualizing Distributed Leader Election Algorithms";
+    }
+  }
+</script>
