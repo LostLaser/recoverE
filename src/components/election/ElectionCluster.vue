@@ -1,6 +1,16 @@
 <template>
     <div class="container">
-        <div v-if="loading" id="loading-container" class="row align-items-center justify-content-center">
+        
+        <div v-for="n in notifications" class="alert notification" role="alert" v-bind:key="n.id">
+            {{ n.message }}
+            <button type="button" class="close" aria-label="Close" v-on:click="clearNotification(n.id)">
+                <span class="material-icons">close</span>
+            </button>
+        </div>
+        <div v-if="errored" id="info-container" class="row align-items-center justify-content-center">
+            <span class="material-icons errored">wifi_off</span>
+        </div>
+        <div v-else-if="loading" id="info-container" class="row align-items-center justify-content-center">
             <div class="spinner-grow m-3" role="status">
                 <span class="sr-only">Loading...</span>
             </div>

@@ -16,7 +16,9 @@ export default {
             events: [],
             eventId: 0,
             eventTimeOut: 1500,
-            loading: true
+            loading: true,
+            errored: false,
+            notifications: []
         }
     },
     methods: {
@@ -97,9 +99,8 @@ export default {
             const toX = (bbox2.left + bbox2.width / 2) - outerBox.left;
             const toY = (bbox2.top + bbox2.height / 2) - outerBox.top;
             
-            var event = {"id": this.eventId, "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
+            var event = {"id": this.getUniqueID(), "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
             this.events.push(event);
-            this.eventId++;
 
             // hack so the event enter transitions will occur
             setTimeout(() => {event.show = true;}, 1);
@@ -119,7 +120,7 @@ export default {
             var node = this.getNodeById(id)
             node.isMaster = !node.isMaster;
         },
-                getNodeById(id) {
+        getNodeById(id) {
             for (var node of this.nodeList) {
                 if (node.id == id) {
                     return node
@@ -131,8 +132,33 @@ export default {
                 id = id.split('-')[0]
             }
             return id;
-        }
+        },
+        getUniqueID() {
+            return ++this.eventId
+        },
+        notify(message) {
 
+            this.notifications.push({
+                "message": message,
+                "id":      this.getUniqueID()
+            })
+        },
+        clearNotification(id) {
+            var index = -1
+            for (var i = 0; i < this.notifications.length; ++i) {
+                if (this.notifications[i].id == id) {
+                    index = i
+                    break
+                }
+            }
+            if (index >= 0) {
+                this.notifications.splice(index, 1)
+            }
+        },
+        setErrored() {
+            this.errored = true
+            this.loading = false
+        }
     },
     mounted() {
         var ref = this
@@ -142,7 +168,22 @@ export default {
             ref.messageParser(JSON.parse(msg.data))
         }
         this.connection.onerror = function () {
-            console.log("Connection lost!")
+            ref.setErrored()
+        }
+        this.connection.onclose = function (event) {
+            switch(event.code) {
+                case 4001:
+                    ref.notify("Session expired due to inactivity", true)
+                    break
+                case 4002:
+                    ref.notify("Maximum connection time hit", true)
+                    break
+                case 1005:
+                    break
+                default:
+                    ref.setErrored()
+                    break
+            }
         }
         
     },

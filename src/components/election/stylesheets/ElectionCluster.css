@@ -28,7 +28,7 @@ body {
   padding: 10em 0 10em 0;
 }
 
-#loading-container {
+#info-container {
   min-height: 80vh;
 }
 
@@ -72,4 +72,14 @@ body {
   z-index: 5;
 }
 
+.notification {
+  background: white;
+  border-color: var(--color-inactive);
+  border-radius: 6px;
+  color: var(--color-inactive);
+}
 
+.errored {
+  font-size: 180px !important;
+  color: var(--light-icon);
+}

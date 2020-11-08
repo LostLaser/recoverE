@@ -11,6 +11,7 @@
   --event-heartbeat: rgb(184, 31, 207);
   --event-elect: rgb(242, 159, 5);
   --event-start-election: rgb(107, 191, 216);
+  --light-icon: rgba(175, 175, 175, 0.69);
 
   --event-size: 20px;
   --box-shadow-default: 0px 0px 5px 1px rgba(0,0,0,0.1);
