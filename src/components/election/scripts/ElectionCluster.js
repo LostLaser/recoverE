@@ -13,12 +13,14 @@ export default {
         return {
             nodeList: [],
             connection: 0,
-            events: [],
+            currentEvents: [],
             eventId: 0,
             eventTimeOut: 1500,
             loading: true,
             errored: false,
-            notifications: []
+            notifications: [],
+            eventQueue: [],
+            eventDelay: 200 // time in milliseconds
         }
     },
     methods: {
@@ -54,7 +56,6 @@ export default {
             }
         },
         messageParser: function(jsonVal) {
-            //console.log("action:", jsonVal["action"], jsonVal["to"], jsonVal["from"], )
             switch(jsonVal["action"]) {
                 case "SETUP":
                     this.loading = false
@@ -69,17 +70,17 @@ export default {
                     this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
                     break
                 case "ELECTED":
-                    this.getNodeById("val-" + jsonVal["from"]).isMaster = true;
+                    this.getNodeById("val-" + jsonVal["target"]).isMaster = true;
                     break
                 case "NOT_MASTER":
-                    this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
+                    this.getNodeById("val-" + jsonVal["target"]).isMaster = false;
                     break
                 case "STOPPED":
-                    this.getNodeById("val-" + jsonVal["from"]).isUp = false;
-                    this.getNodeById("val-" + jsonVal["from"]).isMaster = false;
+                    this.getNodeById("val-" + jsonVal["target"]).isUp = false;
+                    this.getNodeById("val-" + jsonVal["target"]).isMaster = false;
                     break
                 case "STARTED":
-                    this.getNodeById("val-" + jsonVal["from"]).isUp = true;
+                    this.getNodeById("val-" + jsonVal["target"]).isUp = true;
                     break
                 case "START_NEW_ELECTION":
                     this.displayEvent(jsonVal["from"], jsonVal["to"], jsonVal["action"].toLowerCase())
@@ -100,13 +101,13 @@ export default {
             const toY = (bbox2.top + bbox2.height / 2) - outerBox.top;
             
             var event = {"id": this.getUniqueID(), "from": {"x": fromX, "y": fromY}, "to": {"x": toX, "y":toY}, "action": action, "show": false}
-            this.events.push(event);
+            this.currentEvents.push(event);
 
             // hack so the event enter transitions will occur
             setTimeout(() => {event.show = true;}, 1);
 
             setTimeout(() => {
-                this.events.shift();
+                this.currentEvents.shift();
             }, this.eventTimeOut)
         },
         eventPosition: function(el) {
@@ -158,6 +159,13 @@ export default {
         setErrored() {
             this.errored = true
             this.loading = false
+        },
+        dequeueMessages() {
+            setInterval(() => {
+                if (this.eventQueue.length > 0) {
+                    this.messageParser(this.eventQueue.shift())
+                }
+            }, this.eventDelay)
         }
     },
     mounted() {
@@ -165,7 +173,10 @@ export default {
 
         this.connection = new WebSocket(`${this.$apiUrl}/election?count=${this.node_count}&election_type=${this.election_type}`)
         this.connection.onmessage = function (msg) {
-            ref.messageParser(JSON.parse(msg.data))
+            var jsonMsg = JSON.parse(msg.data)
+            if (ref.eventQueue.length < 100) {
+                ref.eventQueue.push(jsonMsg)
+            }
         }
         this.connection.onerror = function () {
             ref.setErrored()
@@ -185,7 +196,8 @@ export default {
                     break
             }
         }
-        
+
+        this.dequeueMessages()
     },
     beforeDestroy() {
         this.connection.close();

@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </li>
-            <div v-for="event in events" v-bind:key="event.id">
+            <div v-for="event in currentEvents" v-bind:key="event.id">
                 <transition @enter="eventEnter" @before-enter="eventPosition" v-bind="element=event" :css="false">
                     <election-event class="eventParticle" :event-class="event.action" v-if="event.show"></election-event>
                 </transition>
